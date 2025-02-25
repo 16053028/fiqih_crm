@@ -123,7 +123,7 @@
                   <svg class="icon me-2">
                     <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-lock-locked"></use>
                   </svg> Lock Account</a> -->
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>">
                   <svg class="icon me-2">
                     <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-account-logout"></use>
                   </svg> Logout</a>
