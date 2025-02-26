@@ -8,7 +8,7 @@ class Master_level extends CI_Controller
         parent::__construct();
         $this->load->model('master_level_model', 'master_level');
 
-        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') != 3 )) {
+        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') == 1 )) {
 			redirect('auth');
 		}
 

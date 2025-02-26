@@ -71,7 +71,7 @@
                     <?= $value->created_at ?>
                 </td>
                 <td >
-                <a href="<?= base_url('master_project/subscription/') . $value->id_pelanggan ?>" class="btn btn-primary">
+                <a href="<?= base_url('master_project/subscription/') . $value->id_pelanggan ?>" class="btn btn-primary <?= ($value->status_psb > 0 ) ? "invisible" : "" ; ?>">
                     <svg class="icon">
                         <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-level-up"></use>
                     </svg></a>

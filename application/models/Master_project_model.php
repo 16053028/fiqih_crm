@@ -38,6 +38,18 @@ class Master_project_model extends CI_Model
 
       return $query->row();
     } 
+
+    public function get_all_customer_project_by_current_sales($id_user)
+    {
+      $this->db->select('a.id_psb, b.id_pelanggan, d.id_login, c.id_layanan, b.nama_pelanggan, c.nama_layanan, d.username, a.status_psb, a.created_at')
+              ->from($this->master_project . " as a")->where('d.id_login = ' . $id_user)
+              ->join('tbl_pelanggan as b', 'a.id_pelanggan = b.id_pelanggan', 'left')
+              ->join('tbl_layanan as c', 'a.id_layanan = c.id_layanan', 'left')
+              ->join('tbl_login as d', 'a.id_login = d.id_login', 'left');
+      $query = $this->db->get();
+
+      return $query->result();
+    } 
   
     /**
      * To select a single row.

@@ -8,7 +8,7 @@ class Master_login extends CI_Controller
         parent::__construct();
         $this->load->model('master_level_model', 'master_level');
         $this->load->model('master_login_model', 'master_login');
-        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') != 3 )) {
+        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') == 1 )) {
 			redirect('auth');
 		}
 

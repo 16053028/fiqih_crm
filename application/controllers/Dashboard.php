@@ -39,7 +39,7 @@ class Dashboard extends CI_Controller {
 			$content = 'pages/dashboard/sales';
 			$subtitle = 'Sales dashboard';
 
-		}else if ($data['akses'] == 4){
+		}else if ($data['akses'] == 3){
 			$content = 'pages/dashboard/manager';	
 			$subtitle = 'Manager dashboard';
 

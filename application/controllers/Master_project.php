@@ -9,7 +9,7 @@ class Master_project extends CI_Controller
         $this->load->model('master_project_model', 'master_project');
         $this->load->model('master_services_model', 'master_services');
 
-        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') != 3 )) {
+        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') != 2 )) {
 			redirect('auth');
 		}
 
@@ -33,18 +33,24 @@ class Master_project extends CI_Controller
      * @return void  */
     public function index()
     {
-        $data['title'] = "Master Customer";
-        $data['subtitle'] = "All data Master Customer";
-        $data['results'] = $this->master_project->get_all_customer_project();
+        $data['title'] = "Master project";
+        $data['subtitle'] = "All data Master project";
+
+        if ($this->session->userdata('id_level') == 3) {
+            $data['results'] = $this->master_project->get_all_customer_project_by_current_sales($this->session->userdata('id_login'));
+        }else{
+            $data['results'] = $this->master_project->get_all_customer_project();
+
+        }
 
         $data['content'] = 'pages/master_project/list';
         $data['breadcrumb'] = array(
             'Dashboard'		=> 	array(
                 'stat'	=> '',
-                'text'	=>	'Master Customer',
+                'text'	=>	'Master project',
                 'link'	=>	'master_customers'
             ),
-            'Master Customer'		=> 	array(
+            'Master project'		=> 	array(
                 'stat'	=> 'active',
                 'text'	=>	'List',
                 'link'	=>	''

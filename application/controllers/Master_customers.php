@@ -10,7 +10,7 @@ class Master_customers extends CI_Controller
         $this->load->model('master_services_model', 'master_services');
         $this->load->model('master_project_model', 'master_project');
 
-        if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') != 3 )) {
+        if (!$this->session->userdata('id_login')) {
 			redirect('auth');
 		}
 
@@ -31,7 +31,11 @@ class Master_customers extends CI_Controller
     {
         $data['title'] = "Master Customer";
         $data['subtitle'] = "All data Master Customer";
-        $data['results'] = $this->master_customers->get_all_customer();
+        if ($this->session->userdata('id_level') == 3) {
+            $data['results'] = $this->master_customers->get_all_customer_by_current_sales($this->session->userdata('id_login'));
+        }else{
+            $data['results'] = $this->master_customers->get_all_customer();
+        }
 
         $data['content'] = 'pages/master_customers/list';
         $data['breadcrumb'] = array(
