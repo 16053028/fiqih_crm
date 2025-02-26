@@ -179,10 +179,10 @@ class Master_services extends CI_Controller
 
         if ($this->master_services->update($data, $id)) {
             $this->session->set_flashdata('status', 'success');
-            $this->session->set_flashdata('msg', 'Deactivated Successfully');
+            $this->session->set_flashdata('msg', 'Activated Successfully');
         } else {
             $this->session->set_flashdata('status', 'danger');
-            $this->session->set_flashdata('msg', 'Failed to Deactivated');
+            $this->session->set_flashdata('msg', 'Failed to Activated');
         }
 
         redirect(base_url('master_services'));
@@ -198,10 +198,10 @@ class Master_services extends CI_Controller
 
         if ($this->master_services->update($data, $id)) {
             $this->session->set_flashdata('status', 'success');
-            $this->session->set_flashdata('msg', 'Activated Successfully');
+            $this->session->set_flashdata('msg', 'Deactivated Successfully');
         } else {
             $this->session->set_flashdata('status', 'danger');
-            $this->session->set_flashdata('msg', 'Failed to Activated');
+            $this->session->set_flashdata('msg', 'Failed to Deactivated');
         }
 
         redirect(base_url('master_services'));

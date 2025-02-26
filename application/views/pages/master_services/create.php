@@ -19,13 +19,13 @@
   <div class="mb-3">
   <div class="text-danger"><?php echo form_error('inputLayanan'); ?></div>
     <label for="inputLayanan" class="form-label">SERVICES</label>
-    <input type="text" class="form-control"  placeholder="Username" id="inputLayanan" name="inputLayanan" value="<?php echo set_value('inputUsername');?>">
+    <input type="text" class="form-control"  placeholder="Services name" id="inputLayanan" name="inputLayanan" value="<?php echo set_value('inputUsername');?>">
   </div>
 
   <div class="mb-3">
   <div class="text-danger"><?php echo form_error('inputBiaya'); ?></div>
     <label for="inputBiaya" class="form-label">PRICE</label>
-    <input type="number" class="form-control"  placeholder="Username" id="inputBiaya" name="inputBiaya" value="<?php echo set_value('inputUsername');?>">
+    <input type="number" class="form-control"  placeholder="services price" id="inputBiaya" name="inputBiaya" value="<?php echo set_value('inputUsername');?>">
   </div>
 
   <div class="mb-3">
