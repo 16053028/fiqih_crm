@@ -30,7 +30,7 @@
         </svg> Customers</a>
     </li>
 
-    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('master_projects'); ?>">
+    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('master_project'); ?>">
         <svg class="nav-icon">
             <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-briefcase"></use>
         </svg> Projects</a>

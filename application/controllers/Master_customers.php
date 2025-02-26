@@ -185,8 +185,10 @@ class Master_customers extends CI_Controller
         $data = ['deleted' => 1];
 
         if ($this->master_customers->update($data, $id)) {
-            $this->session->set_flashdata('status', 'success');
-            $this->session->set_flashdata('msg', 'Deleted Successfully');
+            if ($this->master_project->update($data, $id)) {
+                $this->session->set_flashdata('status', 'success');
+                $this->session->set_flashdata('msg', 'Deleted Successfully');
+            }
         } else {
             $this->session->set_flashdata('status', 'danger');
             $this->session->set_flashdata('msg', 'Failed to delete data');

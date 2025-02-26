@@ -64,7 +64,7 @@
                     <svg class="icon">
                         <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-pencil"></use>
                     </svg></a>
-                    <a href="<?= base_url('master_customers/update/') . $value->id_pelanggan ?>" class="btn btn-primary">
+                    <a href="<?= base_url('master_project/subscription/') . $value->id_pelanggan ?>" class="btn btn-primary">
                     <svg class="icon">
                         <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-level-up"></use>
                     </svg></a>

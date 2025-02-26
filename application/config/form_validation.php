@@ -126,6 +126,15 @@ $config = array(
 
     ),
 
+    'subscription_form' => array(
+        array(
+            'field' => 'inputLayanan',
+            'label' => 'subscribtion services',
+            'rules' => 'required'
+        ),
+
+    ),
+
 );
 
 ?>
