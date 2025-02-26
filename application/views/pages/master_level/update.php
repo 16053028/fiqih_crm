@@ -24,7 +24,7 @@
   </div>
   <div class="mb-3">
   <label for="inputDesc">Description</label>
-  <textarea class="form-control" placeholder="Level description" id="inputDesc" name="inputDesc"><?= $row->keterangan ?></textarea>
+  <textarea class="form-control" placeholder="Level description" id="inputDesc" name="inputDesc"><?= $row->alamat ?></textarea>
   </div>
   
   <div class="mb-3">

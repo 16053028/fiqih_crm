@@ -10,7 +10,7 @@
             <h2><?= $subtitle; ?></h2>
         </div>
         <div class="col-4 text-center">
-        <a href="<?= base_url('master_login/create') ?>" class="btn btn-primary" >Create</a>
+        <a href="<?= base_url('master_customers/create') ?>" class="btn btn-primary" >Create</a>
         </div>
     </div>
 </div>
@@ -29,9 +29,9 @@
     <thead>
         <tr>
             <th>NO</th>
-            <th>USERNAME</th>
-            <th>LEVEL</th>
-            <th>LAST LOGIN</th>
+            <th>CUSTOMER NAME</th>
+            <th>TELP</th>
+            <th>SALES</th>
             <th>CREATED AT</th>
             <th>Action</th>
         </tr>
@@ -45,29 +45,39 @@
                 </td>
 
                 <td>
-                    <?= $value->username ?>
+                    <?= $value->nama_pelanggan ?>
                 </td>
 
                 <td>
-                    <?= $value->level_text ?>
+                    <?= $value->telp_pelanggan ?>
                 </td>
 
                 <td >
-                    <?= $value->last_login ?>
+                    <?= $value->username ?>
                 </td>
 
                 <td >
                     <?= $value->created_at ?>
                 </td>
                 <td >
-                    <a href="<?= base_url('master_login/update/') . $value->id_login ?>" class="btn btn-success" >
+                    <a href="<?= base_url('master_customers/update/') . $value->id_pelanggan ?>" class="btn btn-success" >
                     <svg class="icon">
                         <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-pencil"></use>
-                    </svg> Update</a>
-                    <a href="<?= base_url('master_login/soft_delete/') . $value->id_login ?>" class="btn btn-danger" >
+                    </svg></a>
+                    <a href="<?= base_url('master_customers/update/') . $value->id_pelanggan ?>" class="btn btn-primary">
+                    <svg class="icon">
+                        <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-level-up"></use>
+                    </svg></a>
+
+                    <a href="<?= base_url('master_customers/follow_up/') . $value->id_pelanggan ?>" class="btn btn-warning">
+                    <svg class="icon">
+                        <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/brand.svg#cib-whatsapp"></use>
+                    </svg></a>
+                    
+                    <a href="<?= base_url('master_customers/soft_delete/') . $value->id_pelanggan ?>" class="btn btn-danger" >
                     <svg class="icon">
                         <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-trash"></use>
-                    </svg> Delete</a>
+                    </svg> </a>
                 </td>
             </tr>
         <?php }
@@ -75,10 +85,10 @@
     </tbody>
     <tfoot>
         <tr>
-            <th>NO</th>
-            <th>USERNAME</th>
-            <th>LEVEL</th>
-            <th>LAST LOGIN</th>
+        <th>NO</th>
+            <th>CUSTOMER NAME</th>
+            <th>TELP</th>
+            <th>SALES</th>
             <th>CREATED AT</th>
             <th>Action</th>
         </tr>

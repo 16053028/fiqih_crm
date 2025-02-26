@@ -6,6 +6,7 @@ class Master_customers_model extends CI_Model
 {
 
     protected $master_customers = 'tbl_pelanggan';
+    protected $master_psb = 'tbl_psb';
 
     public function __construct()
     {
@@ -15,11 +16,17 @@ class Master_customers_model extends CI_Model
 
 
 
-    public function get_all_customers(){
-      $query = $this->db->where('deleted = 0')->get($this->master_customers);
+    public function get_all_customer()
+    {
+      $this->db->select('a.id_psb, b.id_pelanggan, b.nama_pelanggan, c.nama_layanan, d.username, b.telp_pelanggan, a.created_at')
+              ->from($this->master_psb . " as a")->where('a.deleted = 0 AND b.deleted = 0')
+              ->join('tbl_pelanggan as b', 'a.id_pelanggan = b.id_pelanggan', 'left')
+              ->join('tbl_layanan as c', 'a.id_layanan = c.id_layanan', 'left')
+              ->join('tbl_login as d', 'a.id_login = d.id_login', 'left');
+      $query = $this->db->get();
 
       return $query->result();
-    }
+    }   
   
     /**
      * To select a single row.

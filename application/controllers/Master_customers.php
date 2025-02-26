@@ -7,13 +7,15 @@ class Master_customers extends CI_Controller
     {
         parent::__construct();
         $this->load->model('master_customers_model', 'master_customers');
+        $this->load->model('master_services_model', 'master_services');
+        $this->load->model('master_project_model', 'master_project');
 
         if (!$this->session->userdata('id_login') && ($this->session->userdata('id_level') != 3 )) {
 			redirect('auth');
 		}
 
         $this->config->load('form_validation');
-        $this->form_validation->set_rules($this->config->item('master_level_form'));
+        $this->form_validation->set_rules($this->config->item('master_services_form'));
     }
  
 
@@ -29,7 +31,7 @@ class Master_customers extends CI_Controller
     {
         $data['title'] = "Master Customer";
         $data['subtitle'] = "All data Master Customer";
-        $data['results'] = $this->master_customers->get_all_customers();
+        $data['results'] = $this->master_customers->get_all_customer();
 
         $data['content'] = 'pages/master_customers/list';
         $data['breadcrumb'] = array(
@@ -53,6 +55,7 @@ class Master_customers extends CI_Controller
      *  @return void  */
     public function create()
     {
+        $data['services'] = $this->master_services->get_all_services(1);
         $data['title'] = "Master Customer";
         $data['subtitle'] = "Add new Customer";
 
@@ -75,27 +78,37 @@ class Master_customers extends CI_Controller
             $this->load->view('main', $data);
         } else {
 
-            $this->form_validation->set_rules('username', 'username', 'required|min_length[3]|max_length[20]|xss_clean|strip_tags');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|min_length[10]|max_length[80]|is_unique[master_customers.email]|xss_clean|strip_tags');
-
             if ($this->form_validation->run() == FALSE) {
-                echo json_encode(['error' => true, 'message' => 'error', 'response' => validation_errors()]);
-                return;
+                $this->load->view('main', $data);
             }
 
             $data = [
-                'username' => $this->input->post('username'),
-                'email' => $this->input->post('email'),
+                'nama_pelanggan' => $this->input->post('inputCustomerName'),
+                'telp_pelanggan' => $this->input->post('inputTelp'),
+                'alamat_pelanggan' => $this->input->post('inputAddress'),
             ];
 
+            $id_cust = $this->master_customers->insert($data);
 
-            if ($this->master_customers->insert($data)) {
-                echo json_encode(['error' => false, 'message' => 'success', 'response' => true]);
-                return;
+            if ($id_cust) {
+                $data['psb'] = [
+                    'id_pelanggan'  => $id_cust,
+                    'id_login'    => $this->session->userdata('id_login'),
+                ];
+                if ($this->master_project->insert($data['psb'])) {
+                    $this->session->set_flashdata('status', 'success');
+                    $this->session->set_flashdata('msg', 'Saved Successfully');
+                }else{
+                    $this->session->set_flashdata('status', 'danger');
+                    $this->session->set_flashdata('msg', 'Failed to save data');
+                }
             } else {
-                echo json_encode(['error' => true, 'message' => 'error', 'response' => false]);
-                return;
+                $this->session->set_flashdata('status', 'danger');
+                $this->session->set_flashdata('msg', 'Failed to save data');
             }
+
+            redirect(base_url('master_customers'));
+
         }
     }
 
@@ -108,38 +121,52 @@ class Master_customers extends CI_Controller
     public function update($id)
     {
         $master_customers =  $this->master_customers->select($id);
+
+        $data['services'] = $this->master_services->get_all_services(1);
+        $data['title'] = "Master Customer";
+        $data['subtitle'] = "Add new Customer";
+
+        $data['content'] = 'pages/master_customers/update';
+        $data['breadcrumb'] = array(
+            'Dashboard'		=> 	array(
+                'stat'	=> '',
+                'text'	=>	'Master Customer',
+                'link'	=>	'master_customers'
+            ),
+            'Master Customer'		=> 	array(
+                'stat'	=> 'active',
+                'text'	=>	'Create',
+                'link'	=>	''
+            ),
+        );
         if (!$master_customers)
             show_404();
 
         if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST') {
-            $data['title'] = "Edit Master_customers";
-            $data['subtitle'] = "Modify Master_customers";
             $data['row'] = $master_customers;
 
-            $this->load->view('pages/master_customers/edit', $data);
+            $this->load->view('main', $data);
         } else {
-
-            $this->form_validation->set_rules('username', 'username', 'required|min_length[3]|max_length[20]|xss_clean|strip_tags');
-            $this->form_validation->set_rules('email', 'email', 'trim|required|min_length[10]|max_length[80]|xss_clean|strip_tags');
-
             if ($this->form_validation->run() == FALSE) {
-                echo json_encode(['error' => true, 'message' => 'error', 'response' => validation_errors()]);
-                return;
+                $this->load->view('main', $data);
             }
 
             $data = [
-                'username' => $this->input->post('username'),
-                'email' => $this->input->post('email'),
+                'nama_pelanggan' => $this->input->post('inputCustomerName'),
+                'telp_pelanggan' => $this->input->post('inputTelp'),
+                'alamat_pelanggan' => $this->input->post('inputAddress'),
             ];
 
 
             if ($this->master_customers->update($data, $id)) {
-                echo json_encode(['error' => false, 'message' => 'success', 'response' => true]);
-                return;
+                $this->session->set_flashdata('status', 'success');
+                $this->session->set_flashdata('msg', 'Saved Successfully');
             } else {
-                echo json_encode(['error' => true, 'message' => 'error', 'response' => false]);
-                return;
+                $this->session->set_flashdata('status', 'danger');
+                $this->session->set_flashdata('msg', 'Failed to save data');
             }
+
+            redirect(base_url('master_customers'));
         }
     }
 
@@ -158,12 +185,28 @@ class Master_customers extends CI_Controller
         $data = ['deleted' => 1];
 
         if ($this->master_customers->update($data, $id)) {
-            echo json_encode(['error' => false, 'message' => 'success', 'response' => true]);
-            return;
+            $this->session->set_flashdata('status', 'success');
+            $this->session->set_flashdata('msg', 'Deleted Successfully');
         } else {
-            echo json_encode(['error' => true, 'message' => 'error', 'response' => false]);
-            return;
+            $this->session->set_flashdata('status', 'danger');
+            $this->session->set_flashdata('msg', 'Failed to delete data');
         }
+        redirect(base_url('master_customers'));
+
+    }
+
+    /**
+     * To set column deleted 1.
+     * 
+     * @param mixed $id 
+     * @return void 
+     */
+    public function follow_up($id)
+    {
+        $this->session->set_flashdata('status', 'info');
+        $this->session->set_flashdata('msg', 'Under developtment');
+        redirect(base_url('master_customers'));
+
     }
 
 }

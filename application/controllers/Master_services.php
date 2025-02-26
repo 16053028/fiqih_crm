@@ -53,8 +53,8 @@ class Master_services extends CI_Controller
     public function create()
     {
 
-        $data['title'] = "Master Services";
-        $data['subtitle'] = "All data Master Services";
+        $data['title'] = "Create  Services";
+        $data['subtitle'] = "Create new Services";
         $data['results'] = $this->master_services->get_all_services();
 
         $data['content'] = 'pages/master_services/create';

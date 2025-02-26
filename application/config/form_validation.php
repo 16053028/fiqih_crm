@@ -107,6 +107,25 @@ $config = array(
         
     ),
 
+    'master_services_form' => array(
+        array(
+            'field' => 'inputCustomerName',
+            'label' => 'Customer Name',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'inputTelp',
+            'label' => 'Telp',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'inputAddress',
+            'label' => 'Address',
+            'rules' => 'required'
+        ),
+
+    ),
+
 );
 
 ?>

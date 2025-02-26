@@ -3,7 +3,9 @@
         <svg class="nav-icon">
             <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-speedometer"></use>
         </svg>
-        Dashboard<span class="badge badge-sm bg-info ms-auto">NEW</span></a>
+        Dashboard
+        <!-- <span class="badge badge-sm bg-info ms-auto">NEW</span> -->
+    </a>
     </li>
     <li class="nav-title">Master Data</li>
     <li class="nav-item"><a class="nav-link" href="<?php echo base_url('master_login'); ?>">

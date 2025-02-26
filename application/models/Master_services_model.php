@@ -13,8 +13,9 @@ class Master_services_model extends CI_Model
     }
 
 
-    public function get_all_services(){
-      $query = $this->db->get($this->master_services);
+    public function get_all_services($is_active = null){
+      ($is_active) ? $query = $this->db->where("deleted", $is_active)->get($this->master_services)
+      : $query = $this->db->get($this->master_services) ;
 
       return $query->result();
     }
