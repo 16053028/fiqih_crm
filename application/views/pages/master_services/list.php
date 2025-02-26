@@ -58,7 +58,7 @@
                 </td>
 
                 <td>
-                    <?= ($value->deleted == 0 ) ? "ACTIVE" : "DEACTIVATED" ; ?>
+                    <?= ($value->deleted == 1 ) ? "ACTIVE" : "DEACTIVATED" ; ?>
                 </td>
 
                 <td >
@@ -72,7 +72,7 @@
                     <a href="<?= ($value->deleted == 0 ) ? base_url('master_services/soft_delete/') . $value->id_layanan : base_url('master_services/deactivated/') . $value->id_layanan ?>" class="btn <?= ($value->deleted == 0 ) ? "btn-danger" : "btn-success" ?>">
                     <svg class="icon">
                         <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-trash"></use>
-                    </svg> <?= ($value->deleted == 0 ) ? "DEACTIVATED" : "ACTIVATED" ?></a>
+                    </svg> <?= ($value->deleted == 1 ) ? "DEACTIVATED" : "ACTIVATED" ?></a>
                 </td>
             </tr>
         <?php }

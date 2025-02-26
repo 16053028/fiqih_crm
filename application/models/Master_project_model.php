@@ -85,6 +85,28 @@ class Master_project_model extends CI_Model
       $this->db->trans_rollback();
       return false;
     }
+
+    /**
+     * To insert a row
+     * 
+     * @param array $data array including data.
+     * @return bool|int 
+     */
+    public function insert($data)
+    {
+      $this->db->trans_begin();
+  
+      $this->db->set($data);
+      $this->db->insert($this->master_project);
+  
+      if ($id = $this->db->insert_id())
+        if ($this->db->trans_status()) {
+          $this->db->trans_commit();
+          return $id;
+        }
+      $this->db->trans_rollback();
+      return false;
+    }
   
 }
 

@@ -8,10 +8,10 @@
     <div class="row">
         <div class="col-8">
             <h2><?= $subtitle; ?></h2>
-        </div>
+        <!-- </div>
         <div class="col-4 text-center">
         <a href="<?= base_url('master_login/create') ?>" class="btn btn-primary" >Create</a>
-        </div>
+        </div> -->
     </div>
 </div>
 

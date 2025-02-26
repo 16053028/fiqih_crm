@@ -70,7 +70,7 @@ class Master_project extends CI_Controller
     public function subscription($id)
     {
         $master_project =  $this->master_project->get_all_customer_project_by_id($id);
-        $data['layanans'] = $this->master_services->get_all_services();
+        $data['layanans'] = $this->master_services->get_all_services(1);
 
         $data['title'] = "Subscribe Services";
             $data['subtitle'] = "Subscribe user to a services";
