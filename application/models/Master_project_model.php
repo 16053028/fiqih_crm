@@ -53,28 +53,6 @@ class Master_project_model extends CI_Model
     }
   
     /**
-     * To insert a row
-     * 
-     * @param array $data array including data.
-     * @return bool|int 
-     */
-    public function insert($data)
-    {
-      $this->db->trans_begin();
-  
-      $this->db->set($data);
-      $this->db->insert($this->master_project);
-  
-      if ($id = $this->db->insert_id())
-        if ($this->db->trans_status()) {
-          $this->db->trans_commit();
-          return $id;
-        }
-      $this->db->trans_rollback();
-      return false;
-    }
-  
-    /**
      * @param array $data array including data.
      * @param int $id 
      * @return bool 
@@ -96,27 +74,6 @@ class Master_project_model extends CI_Model
       return false;
     }
   
-    /**
-     * To delete data permanently.
-     * 
-     * @param mixed $id 
-     * @return bool 
-     */
-    public function delete($id)
-    {
-      $this->db->trans_begin();
-  
-      $this->db->where("id", $id);
-      $this->db->delete($this->master_project);
-  
-      if ($this->db->affected_rows())
-        if ($this->db->trans_status()) {
-          $this->db->trans_commit();
-          return true;
-        }
-      $this->db->trans_rollback();
-      return false;
-    }
 }
 
 /* End of file Master_project_model.php and path \application\models\Master_project_model.php */

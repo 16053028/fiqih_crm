@@ -29,11 +29,11 @@
     <thead>
         <tr>
             <th>NO</th>
-            <th>USERNAME</th>
-            <th>LEVEL</th>
-            <th>LAST LOGIN</th>
+            <th>CUSTOMER NAME</th>
+            <th>SERVICES</th>
+            <th>SALES</th>
             <th>CREATED AT</th>
-            <th>Action</th>
+            <th>ACTION</th>
         </tr>
     </thead>
     <tbody>
@@ -45,29 +45,25 @@
                 </td>
 
                 <td>
-                    <?= $value->username ?>
+                    <?= $value->nama_pelanggan ?>
                 </td>
 
                 <td>
-                    <?= $value->level_text ?>
+                    <?= $value->nama_layanan ?>
                 </td>
 
                 <td >
-                    <?= $value->last_login ?>
+                    <?= $value->username ?>
                 </td>
 
                 <td >
                     <?= $value->created_at ?>
                 </td>
                 <td >
-                    <a href="<?= base_url('master_login/update/') . $value->id_login ?>" class="btn btn-success" >
+                <a href="<?= base_url('master_approval/approve/') . $value->id_pelanggan ?>" class="btn btn-primary">
                     <svg class="icon">
-                        <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-pencil"></use>
-                    </svg> Update</a>
-                    <a href="<?= base_url('master_login/soft_delete/') . $value->id_login ?>" class="btn btn-danger" >
-                    <svg class="icon">
-                        <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-trash"></use>
-                    </svg> Delete</a>
+                        <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-check-alt"></use>
+                    </svg></a>
                 </td>
             </tr>
         <?php }
@@ -75,12 +71,12 @@
     </tbody>
     <tfoot>
         <tr>
-            <th>NO</th>
-            <th>USERNAME</th>
-            <th>LEVEL</th>
-            <th>LAST LOGIN</th>
+        <th>NO</th>
+            <th>CUSTOMER NAME</th>
+            <th>SERVICES</th>
+            <th>SALES</th>
             <th>CREATED AT</th>
-            <th>Action</th>
+            <th>ACTION</th>
         </tr>
     </tfoot>
 </table>

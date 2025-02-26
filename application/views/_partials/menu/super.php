@@ -36,7 +36,7 @@
         </svg> Projects</a>
     </li>
 
-    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('master_approvals'); ?>">
+    <li class="nav-item"><a class="nav-link" href="<?php echo base_url('master_approval'); ?>">
         <svg class="nav-icon">
             <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-bell"></use>
         </svg> Approvals</a>
