@@ -42,32 +42,4 @@
         </svg> Approvals</a>
     </li>
     <li class="nav-divider"></li>
-    <li class="nav-title">Report</li>
-    <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
-        <svg class="nav-icon">
-            <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-chart"></use>
-        </svg> Sales</a>
-        <ul class="nav-group-items compact">
-            <li class="nav-item"><a class="nav-link" href="login.html" target="_top">
-                <svg class="nav-icon">
-                    <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-account-logout"></use>
-                </svg> Login</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="register.html" target="_top">
-                <svg class="nav-icon">
-                    <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-account-logout"></use>
-                </svg> Register</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="404.html" target="_top">
-                <svg class="nav-icon">
-                    <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-bug"></use>
-                </svg> Error 404</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="500.html" target="_top">
-                <svg class="nav-icon">
-                    <use xlink:href="<?php echo base_url(); ?>assets/coreui-free/icons/sprites/free.svg#cil-bug"></use>
-                </svg> Error 500</a>
-            </li>
-        </ul>
-    </li>
 </ul>
