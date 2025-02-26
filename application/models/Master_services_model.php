@@ -2,10 +2,10 @@
                 
 defined('BASEPATH') OR exit('No direct script access allowed');
                         
-class Master_level_model extends CI_Model 
+class Master_services_model extends CI_Model 
 {
 
-    protected $master_level = 'tbl_levels';
+    protected $master_services = 'tbl_layanan';
 
     public function __construct()
     {
@@ -13,13 +13,13 @@ class Master_level_model extends CI_Model
     }
 
 
-
-
-    public function get_all_levels(){
-      $query = $this->db->where('deleted = 0')->get($this->master_level);
+    public function get_all_services(){
+      $query = $this->db->get($this->master_services);
 
       return $query->result();
     }
+
+    
   
     /**
      * To select a single row.
@@ -29,8 +29,8 @@ class Master_level_model extends CI_Model
      */
     public function select($id)
     {
-      $this->db->where("id_level", $id);
-      $query = $this->db->get($this->master_level);
+      $this->db->where("id_layanan", $id);
+      $query = $this->db->get($this->master_services);
       return ($query->num_rows()) ? $query->row() : false;
     }
   
@@ -45,7 +45,7 @@ class Master_level_model extends CI_Model
       $this->db->trans_begin();
   
       $this->db->set($data);
-      $this->db->insert($this->master_level);
+      $this->db->insert($this->master_services);
   
       if ($id = $this->db->insert_id())
         if ($this->db->trans_status()) {
@@ -66,8 +66,8 @@ class Master_level_model extends CI_Model
       $this->db->trans_begin();
   
       $this->db->set($data);
-      $this->db->where("id_level", $id);
-      $this->db->update($this->master_level);
+      $this->db->where("id_layanan", $id);
+      $this->db->update($this->master_services);
   
       if ($this->db->affected_rows())
         if ($this->db->trans_status()) {
@@ -78,28 +78,7 @@ class Master_level_model extends CI_Model
       return false;
     }
   
-    /**
-     * To delete data permanently.
-     * 
-     * @param mixed $id 
-     * @return bool 
-     */
-    public function delete($id)
-    {
-      $this->db->trans_begin();
-  
-      $this->db->where("id", $id);
-      $this->db->delete($this->master_level);
-  
-      if ($this->db->affected_rows())
-        if ($this->db->trans_status()) {
-          $this->db->trans_commit();
-          return true;
-        }
-      $this->db->trans_rollback();
-      return false;
-    }
 }
 
-/* End of file Master_level_model.php and path \application\models\Master_level_model.php */
+/* End of file Master_services_model.php and path \application\models\Master_services_model.php */
                     

@@ -7,6 +7,7 @@ class Auth_model extends CI_Model
 
     private $_table = "tbl_login";
 	const SESSION_KEY = 'id_login';
+	const level ='id_level';
 
 	public function proses($username, $password)
 	{
@@ -22,7 +23,7 @@ class Auth_model extends CI_Model
 			return FALSE;
 		}
 
-		$this->session->set_userdata([self::SESSION_KEY => $user->id_login]);
+		$this->session->set_userdata([self::SESSION_KEY => $user->id_login, self::level => $user->id_level]);
 		$this->_update_last_login($user->id_login);
 
 		return $this->session->has_userdata(self::SESSION_KEY);

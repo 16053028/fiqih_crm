@@ -7,6 +7,9 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('auth_model', 'auth');
+
+		$this->config->load('form_validation');
+        $this->form_validation->set_rules($this->config->item('auth'));
     }
 
 	/**
@@ -31,17 +34,7 @@ class Auth extends CI_Controller {
 
     public function proses(){
         
-		$this->form_validation->set_rules('username', 'Username', 'required',
-										array(
-											'required'      => '* The Username field cannot be empty',
-										)
-								);
-
-		$this->form_validation->set_rules('password', 'Password', 'required',
-										array(
-											'required'      => '* The Password field cannot be empty',
-										)
-								);
+		
 
             if ($this->form_validation->run() == FALSE) {
                 $this->load->view('pages/auth/index');

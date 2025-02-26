@@ -7,7 +7,8 @@ class Dashboard extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('auth_model');
-		if(!$this->auth_model->current_user()){
+
+		if (!$this->session->userdata('id_login')) {
 			redirect('auth');
 		}
 	}
@@ -29,22 +30,42 @@ class Dashboard extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data['akses'] = $this->session->userdata('id_level');
+
+		if ($data['akses'] == 1) {
+			$content = 'pages/dashboard/super';
+			$subtitle = 'Super admin dashboard';
+		} else if ($data['akses'] == 2) {
+			$content = 'pages/dashboard/sales';
+			$subtitle = 'Sales dashboard';
+
+		}else if ($data['akses'] == 4){
+			$content = 'pages/dashboard/manager';	
+			$subtitle = 'Manager dashboard';
+
+		}else{
+			echo "under construction";
+			return;	
+		}
+		
+		
 		$data = array(
-			'title'			=>	'Dashboard',
-			'content' 		=>	'pages/dashboard',
-			'breadcrumb'	=>	array(
-					'Home'		=> 	array(
-						'stat'	=> '',
-						'text'	=>	'Home',
-						'link'	=>	'dashboard'
-					),
-					'Dashboard'		=> 	array(
-						'stat'	=> 'active',
-						'text'	=>	'Dashboard',
-						'link'	=>	''
-					),
-			)
-	);
+				'title'			=>	'Dashboard',
+				'subtitle'		=>	$subtitle,
+				'content' 		=>	$content,
+				'breadcrumb'	=>	array(
+						'Home'		=> 	array(
+							'stat'	=> '',
+							'text'	=>	'Home',
+							'link'	=>	'dashboard'
+						),
+						'Dashboard'		=> 	array(
+							'stat'	=> 'active',
+							'text'	=>	'Dashboard',
+							'link'	=>	''
+						),
+				)
+		);
 		$this->load->view('main', $data);
 	}
 }

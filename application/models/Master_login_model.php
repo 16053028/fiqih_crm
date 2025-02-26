@@ -42,7 +42,7 @@ class Master_login_model extends CI_Model
 
     public function get_all_login(){
       $this->db->select('a.id_login, a.username, b. level_text, a. last_login, a.created_at')
-              ->from($this->master_login . " as a")
+              ->from($this->master_login . " as a")->where('a.deleted = 0')
               ->join('tbl_levels as b', 'a.id_level = b.id_level', 'left')
               ->order_by("created_at");
       $query = $this->db->get();
@@ -97,28 +97,6 @@ class Master_login_model extends CI_Model
       $this->db->set($data);
       $this->db->where("id_login", $id);
       $this->db->update($this->master_login);
-  
-      if ($this->db->affected_rows())
-        if ($this->db->trans_status()) {
-          $this->db->trans_commit();
-          return true;
-        }
-      $this->db->trans_rollback();
-      return false;
-    }
-  
-    /**
-     * To delete data permanently.
-     * 
-     * @param mixed $id 
-     * @return bool 
-     */
-    public function delete($id)
-    {
-      $this->db->trans_begin();
-  
-      $this->db->where("id", $id);
-      $this->db->delete($this->master_login);
   
       if ($this->db->affected_rows())
         if ($this->db->trans_status()) {

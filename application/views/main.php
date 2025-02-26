@@ -148,7 +148,7 @@
                           echo "<span>" . $value['text'] . "</span>";
                           
                         } else {
-                          echo ("<a href=" . $value['link'] . ">" . $value['text'] ."</a>");
+                          echo ("<a href=" . base_url($value['link']) . ">" . $value['text'] ."</a>");
                           
                         } 
                       ?>
